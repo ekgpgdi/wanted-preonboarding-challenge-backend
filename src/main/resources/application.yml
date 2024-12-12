@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: wanted-preonboarding-challenge-backend
+
+
+
+h2:
+  console:
+    enabled: true
+    path: /h2-console
+  datasource:
+    driverClassName: org.h2.Driver
+    url:jdbc: h2:~/spring-market-db
+    # url: jdbc:h2:mem:test # In-Memory mode
+    username: dahye
+    password: dahye
+sql:
+  init:
+    mode: always
