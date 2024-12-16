@@ -11,3 +11,24 @@ spring:
     hibernate:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
+
+  data:
+    redis:
+      host: localhost # Redis 서버 호스트
+      port: 6379      # Redis 서버 포트
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dahae80912@gmail.com
+    password: wbuo zdju vwbb zqoi
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwtSecret: 5TRwEzsnDlRL0mUTkKc2wHCy4auNF7AtLa9lE0HIo65v6QKHsJsDSNNeLilBEcnXxyiNCZN9zbEf6wtsUi1CbQ== #openssl rand -base64 64
