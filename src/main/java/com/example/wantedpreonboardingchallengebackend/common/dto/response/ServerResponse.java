@@ -22,7 +22,7 @@ public class ServerResponse<T> {
   }
 
   public static <T> ServerResponse<T> successResponse(final T content) {
-    return new ServerResponse<>(ResponseCode.SUCCESS, Objects.requireNonNull(content, "content"));
+    return new ServerResponse<>(ResponseCode.SUCCESS, content);
   }
 
   public static <T> ServerResponse<T> errorResponse(ResponseCode code) {

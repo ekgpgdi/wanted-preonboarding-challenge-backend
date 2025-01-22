@@ -4,6 +4,7 @@ import com.example.wantedpreonboardingchallengebackend.common.dto.response.Serve
 import com.example.wantedpreonboardingchallengebackend.common.entity.ResponseCode;
 import com.example.wantedpreonboardingchallengebackend.member.dto.request.EmailRequest;
 import com.example.wantedpreonboardingchallengebackend.member.dto.request.EmailVerifyRequest;
+import com.example.wantedpreonboardingchallengebackend.member.dto.request.SignRequest;
 import com.example.wantedpreonboardingchallengebackend.member.dto.request.LoginRequest;
 import com.example.wantedpreonboardingchallengebackend.member.service.AuthService;
 import com.example.wantedpreonboardingchallengebackend.member.service.EmailService;
@@ -31,7 +32,8 @@ public class AuthController {
   @PostMapping("/login")
   public ServerResponse<String> login(
       @Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
+
+    if (bindingResult != null && bindingResult.hasErrors()) {
       throw new IllegalArgumentException(bindingResult.getAllErrors().get(0).getDefaultMessage());
     }
 
@@ -43,7 +45,8 @@ public class AuthController {
   @PostMapping("/send-verification-code")
   public ServerResponse<String> sendVerificationCode(
       @RequestBody @Valid EmailRequest emailRequest, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
+
+    if (bindingResult != null && bindingResult.hasErrors()) {
       throw new IllegalArgumentException(bindingResult.getAllErrors().get(0).getDefaultMessage());
     }
     String code = authService.generateVerificationCode(emailRequest.getEmail());
@@ -56,7 +59,8 @@ public class AuthController {
   @PostMapping("/verify-code")
   public ServerResponse<ResponseCode> checkVerificationCode(
       @RequestBody @Valid EmailVerifyRequest emailVerifyRequest, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
+
+    if (bindingResult != null && bindingResult.hasErrors()) {
       throw new IllegalArgumentException(bindingResult.getAllErrors().get(0).getDefaultMessage());
     }
 
@@ -68,5 +72,17 @@ public class AuthController {
     }
 
     return ServerResponse.successResponse(ResponseCode.SUCCESS);
+  }
+
+  @Operation(summary = "회원가입 응답 : jwt")
+  @PostMapping("/sign")
+  public ServerResponse<String> sign(
+    @Valid @RequestBody SignRequest signRequest, BindingResult bindingResult) {
+
+    if (bindingResult != null && bindingResult.hasErrors()) {
+      throw new IllegalArgumentException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+    }
+
+    return ServerResponse.successResponse(authService.sign(signRequest));
   }
 }

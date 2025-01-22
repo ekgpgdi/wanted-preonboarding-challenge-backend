@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailService {
   private final JavaMailSender emailSender;
-
   private static final String FROM = "dahae80912@gmail.com";
   private static final String SUBJECT = "[인증 코드] 이메일 인증 코드 ";
   private static final String TEXT = "안녕하세요. 하단 인증 코드를 입력해주세요 \n" + "CODE : ";

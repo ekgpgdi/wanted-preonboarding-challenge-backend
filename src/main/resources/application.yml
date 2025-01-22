@@ -2,15 +2,20 @@ spring:
   application:
     name: wanted-preonboarding-challenge-backend
   datasource:
-    url: jdbc:h2:mem:test
-    driverClassName: org.h2.Driver
-    username: dahye
+    url: jdbc:mysql://127.0.0.1:3306/preonboarding
+    username: root
     password: dahye
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.H2Dialect
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+    database: mysql
+    open-in-view: false
 
   data:
     redis:
@@ -29,6 +34,9 @@ spring:
           auth: true
           starttls:
             enable: true
+
+server:
+  port: 8080
 
 app:
   jwtSecret: 5TRwEzsnDlRL0mUTkKc2wHCy4auNF7AtLa9lE0HIo65v6QKHsJsDSNNeLilBEcnXxyiNCZN9zbEf6wtsUi1CbQ== #openssl rand -base64 64

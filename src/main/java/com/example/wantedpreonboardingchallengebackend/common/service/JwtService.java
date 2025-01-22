@@ -1,5 +1,5 @@
 package com.example.wantedpreonboardingchallengebackend.common.service;
-;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
